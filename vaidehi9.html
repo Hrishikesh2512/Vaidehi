@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaidehi E-Commerce</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f8f8f8;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header-content h1 {
+            margin: 0;
+            cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+        }
+        .search-box input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .nav-links a:hover {
+            background-color: #444;
+            color: #fff;
+        }
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+        }
+        .profile-section img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+        .profile-section a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .profile-section a:hover {
+            text-decoration: underline;
+        }
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px; /* Space for fixed header */
+            position: relative; /* Position relative for absolute positioning inside */
+        }
+        .horizontal-scroll-container {
+            display: flex;
+            flex-wrap: nowrap; /* Ensure no wrapping occurs */
+            overflow-x: auto; /* Allow horizontal scrolling if needed */
+            gap: 20px;
+            padding: 20px;
+            background-color: #ddd; /* Light grey background for upper section */
+            margin-bottom: 20px; /* Space between horizontal and vertical sections */
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            justify-content: start; /* Align sections to the start */
+        }
+        .horizontal-scroll-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .horizontal-scroll-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .horizontal-scroll-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .section {
+            flex: 0 0 auto;
+            width: 150px; /* Size for horizontal sections */
+            height: 200px; /* Size for horizontal sections */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: background-color 0.3s, transform 0.3s;
+            scroll-snap-align: start;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline from links */
+            color: inherit; /* Inherit color from parent */
+        }
+        .section:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
+        .section img {
+            width: 80%;
+            max-width: 120px; /* Size for images in horizontal sections */
+            height: auto;
+            border: 2px solid #000;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        .section img:hover {
+            transform: scale(1.05);
+        }
+        .section h2 {
+            margin: 10px 0;
+            font-size: 14px; /* Smaller font size for titles */
+        }
+        .contact-section {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .contact-section a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+        .item-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+        .item {
+            flex: 0 0 auto;
+            width: 150px;
+            text-align: center;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            padding: 10px;
+            transition: transform 0.3s;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline from links */
+            color: inherit; /* Inherit color from parent */
+        }
+        .item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .item:hover {
+            transform: scale(1.05);
+        }
+        .item h3 {
+            margin: 10px 0 5px 0;
+            font-size: 16px;
+        }
+        .item p {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 id="header-title">Vaidehi</h1>
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="nav-links">
+                <a href="file:///C:/Users/jhakh/Downloads/Cart.html">Cart (3)</a>
+                <a href="file:///C:/Users/jhakh/Downloads/LikedItems.html">Liked Items (3)</a>
+            </div>
+            <div class="profile-section">
+                <img src="file:///C:/Users/jhakh/Downloads/profilepic.jpg" alt="Profile Picture">
+                <a href="file:///C:/Users/jhakh/Downloads/profilepage.html">Profile</a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        <!-- Horizontal Scrolling Sections -->
+        <div class="horizontal-scroll-container">
+            <a href="file:///C:/Users/jhakh/OneDrive/Desktop/Vaidehi-Project/Painting.html" class="section">
+                <h2>Paintings</h2>
+                <img src="file:///C:/Users/jhakh/Downloads/Mithila%20Painting.jpg" alt="Mithila Painting">
+            </a>
+            
+            <a href="file:///C:/Users/jhakh/OneDrive/Desktop/Vaidehi-Project/Garments.html" class="section">
+                <h2>Garments</h2>
+                <img src="file:///C:/Users/jhakh/OneDrive/Pictures/Screenshots/Screenshot%202024-09-10%20025703.png" alt="Garments">
+            </a>
+            
+            <a href="file:///C:/Users/jhakh/OneDrive/Desktop/Vaidehi-Project/sikkiart.html" class="section">
+                <h2>Sikki Art</h2>
+                <img src="file:///C:/Users/jhakh/Downloads/sikki.jpeg" alt="Sikki Art">
+            </a>
+            
+            <a href="file:///C:/Users/jhakh/OneDrive/Desktop/Vaidehi-Project/Books.html" class="section">
+                <h2>Books</h2>
+                <img src="file:///C:/Users/jhakh/Downloads/booksolds.webp" alt="Books">
+            </a>
+            
+            <a href="file:///C:/Users/jhakh/OneDrive/Desktop/Vaidehi-Project/Food.html" class="section">
+                <h2>Food</h2>
+                <img src="file:///C:/Users/jhakh/Downloads/Biriya.jpeg" alt="Biriya">
+            </a>
+            
+            <a href="file:///C:/Users/jhakh/OneDrive/Desktop/Vaidehi-Project/Buddhism.html" class="section">
+                <h2>Buddhism</h2>
+                <img src="file:///C:/Users/jhakh/Downloads/Buddha.jpeg" alt="Buddha">
+            </a>
+            
+            <a href="file:///C:/Users/jhakh/OneDrive/Desktop/Vaidehi-Project/Festive.html" class="section">
+                <h2>Festive Items</h2>
+                <img src="file:///C:/Users/jhakh/Downloads/pathia.jpg" alt="Pathia">
+            </a>
+
+            <a href="file:///C:/Users/jhakh/OneDrive/Desktop/Vaidehi-Project/Embroidery.html" class="section">
+                <h2>Embroidery</h2>
+                <img src="file:///C:/Users/jhakh/Downloads/Embroidery.jpeg" alt="Embroidery">
+            </a>
+            
+            <!-- New Sections -->
+            <a href="https://example.com/more" class="section">
+                <h2>More</h2>
+                <img src="https://via.placeholder.com/120x80?text=More" alt="More">
+            </a>
+        </div>
+
+        <!-- For You Section -->
+        <div class="section-container" style="margin: 20px; padding: 10px; background-color: #fafafa; border: 2px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h2 style="margin: 0 0 15px 0; font-size: 24px; color: #000;">For You</h2>
+            <div class="item-container">
+                <a href="file:///C:/Users/jhakh/Downloads/mainitem.peacockpainting.html" class="item">
+                    <img src="file:///C:/Users/jhakh/Downloads/Item1.webp" alt="Item 1">
+                    <h3>Peacock Painting</h3>
+                    <p>₹599</p>
+                </a>
+                <a href="file:///C:/Users/jhakh/Downloads/BeautifulPainting.mainpage.html" class="item">
+                    <img src="file:///C:/Users/jhakh/OneDrive/Pictures/Screenshots/Screenshot%202024-09-10%20025014.png" alt="Item 2">
+                    <h3>Beautiful Sari</h3>
+                    <p>₹899</p>
+                </a>
+                <a href="file:///C:/Users/jhakh/Downloads/Traditionalpaag.mainpage.html" class="item">
+                    <img src="file:///C:/Users/jhakh/Downloads/paag.jpg" alt="Item 3">
+                    <h3>Traditional Paag</h3>
+                    <p>₹999</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- Discounted Items Section -->
+        <div class="section-container" style="margin: 20px; padding: 10px; background-color: #fafafa; border: 2px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <h2 style="margin: 0 0 15px 0; font-size: 24px; color: #000;">Discounted Items</h2>
+            <div class="item-container">
+                <a href="file:///C:/Users/jhakh/Downloads/mainitem.peacockpainting.html" class="item">
+                    <img src="file:///C:/Users/jhakh/Downloads/Item1.webp" alt="Discount 1">
+                    <h3>Discount 1</h3>
+                    <p><del>₹599</del> <strong>₹549</strong></p>
+                </a>
+                <a href="file:///C:/Users/jhakh/Downloads/BeautifulPainting.mainpage.html" class="item">
+                    <img src="file:///C:/Users/jhakh/OneDrive/Pictures/Screenshots/Screenshot%202024-09-10%20025014.png" alt="Discount 2">
+                    <h3>Discount 2</h3>
+                    <p><del>₹899</del> <strong>₹729</strong></p>
+                </a>
+                <a href="file:///C:/Users/jhakh/Downloads/makhana.mainpage.html" class="item">
+                    <img src="file:///C:/Users/jhakh/OneDrive/Pictures/Screenshots/Screenshot%202024-09-10%20025203.png" alt="Discount 3">
+                    <h3>Discount 3</h3>
+                    <p><del>₹999</del> <strong>₹649</strong></p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section class="contact-section">
+        <h2>Contact Us</h2>
+        <p>
+            <a href="mailto:info@vaidehi.com">Email: info@vaidehi.com</a><br>
+            <a href="tel:+1234567890">Phone: +1234567890</a><br>
+            <a href="https://instagram.com/vaidehi" target="_blank">Instagram</a>
+        </p>
+    </section>
+
+    <script>
+        // JavaScript for handling cart and liked items
+        let cartCount = 0;
+        let likedCount = 0;
+
+        // Example logic for cart and liked items counts
+        document.getElementById('cart-link').textContent = `Cart (${cartCount})`;
+        document.getElementById('liked-link').textContent = `Liked Items (${likedCount})`;
+
+        // Add event listener to the header title to refresh the page
+        document.getElementById('header-title').addEventListener('click', function() {
+            location.reload();
+        });
+    </script>
+</body>
+</html>
